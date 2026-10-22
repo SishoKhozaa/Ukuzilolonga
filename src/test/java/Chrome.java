@@ -1,0 +1,25 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+
+public class Chrome {
+    WebDriver driver;
+
+    @Test
+    public void loginToDemoWithBrowser(){
+        driver = new ChromeDriver();
+        driver.get("https://www.saucedemo.com/");
+        driver.manage().window().maximize();
+        driver.findElement(By.id("user-name")).sendKeys("standard-user");
+        driver.findElement(By.id("password")).sendKeys("secret-sauce");
+        driver.findElement(By.xpath("//input[@id='login-button']")).click();
+
+    }
+
+    @AfterTest
+    public void closeBrowser(){
+        driver.quit();
+    }
+}
